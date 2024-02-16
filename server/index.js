@@ -77,12 +77,17 @@ io.on('connection', (socket)=>{
         io.to(room_id).emit("message", r);
         callback();
       } )
-    socket.on("disconnect", ()=>{
-      const user = removeUsers(socket.id);
-    })
   });
+  socket.on('get-messages-history', room_id => {
+    Message.find({ room_id }).then(result => {
+        socket.emit('output-messages', result)
+    })
+  })
   socket.on("connect_error", (err) => {
     console.log(`connect_error due to ${err.message}`);
   });
+  socket.on("disconnect", ()=>{
+    const user = removeUsers(socket.id);
+  })
 });
 
