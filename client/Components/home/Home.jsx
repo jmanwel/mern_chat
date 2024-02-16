@@ -7,7 +7,7 @@ import io from "socket.io-client"
 let socket;
 const Home = () => {
 
-    const ENDPOINT = "http://132.226.242.181:5000/";
+    const ENDPOINT = import.meta.env.VITE_ENDPOINT;
 
     useEffect(()=>{
         socket = io(ENDPOINT, {rejectUnauthorized: false,withCredentials: true, extraHeaders: {"my-custom-header": "abcd"}});
