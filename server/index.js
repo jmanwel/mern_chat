@@ -62,6 +62,7 @@ io.on('connection', (socket)=>{
     }
   });
   socket.on("send-message", ( message, room_id, callback )=>{
+    console.log(socket.id)
     const user = getUser(socket.id);
     const msgToStore = {
       name: user.name,
