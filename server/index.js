@@ -1,8 +1,11 @@
 require('dotenv').config();
 const express = require('express');
+const authRoutes = require('./routes/authRoutes');
 const { createServer } = require('node:http');
 const socketio = require('socket.io');
 const app = express();
+app.use(express.json());
+app.use(authRoutes);
 const server = createServer(app);
 const mongoose = require('mongoose');
 const { addUsers, removeUsers, getUsers, getUser } = require("./helper");
