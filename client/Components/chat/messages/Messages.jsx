@@ -4,11 +4,11 @@ import "./Messages.css";
 import STB from "react-scroll-to-bottom";
 
 const Messages = ({ messages, user_id }) => {
-    return (
+    return (    
         <STB className="messages">
-            { messages.map((message, i)=>{
+            { messages.map((message, i)=>(
                 <Message key={ message._id } message={ message } current_uid={ user_id } />
-            })}
+            ))}
         </STB>
     )
 }
