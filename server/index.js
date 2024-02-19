@@ -82,7 +82,7 @@ io.on('connection', (socket)=>{
       })
   });
   socket.on("join", ({ name, room_name, room_id, user_id })=>{
-    const { error, user } = addUsers({socket_id:socket.id, name, room_id, user_id });
+    const { error, user } = addUsers({ socket_id:socket.id, name, room_id, user_id });
     socket.join(room_id);
     if (error){
       console.log("Join error: ", error);
@@ -92,7 +92,6 @@ io.on('connection', (socket)=>{
     }
   });
   socket.on("send-message", ( message, room_id, callback )=>{
-    console.log(socket.id)
     const user = getUser(socket.id);
     const msgToStore = {
       name: user.name,
@@ -100,7 +99,7 @@ io.on('connection', (socket)=>{
       room_id,
       text: message
     };
-    console.log("message", msgToStore);
+    console.log("message => ", msgToStore);
     const msg = new Message(msgToStore);
     msg.save()
       .then(r => {

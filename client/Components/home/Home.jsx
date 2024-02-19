@@ -49,7 +49,7 @@ const Home = () => {
         const john = {name: "John", 
                       mail: "john@email.com",
                       password: "123",
-                      id: "123"
+                      _id: "123"
                     };
         setUser(john)
     }
@@ -58,7 +58,7 @@ const Home = () => {
         const tom = {name: "Tom", 
                       mail: "tom@email.com",
                       password: "456",
-                      id: "456"
+                      _id: "456"
                     };
         setUser(tom)
     }

@@ -12,7 +12,7 @@ const Message = ({ message:{ name, user_id, text }, current_uid }) => {
         isCurrentUser?(
         <div className="row right-align">
             <div className="col s12 m8 16 right">
-                <p className="sentbyMe">{ name } : { text }</p>
+                <p className="sentbyme">{ name } : { text }</p>
             </div>
         </div>
         )
