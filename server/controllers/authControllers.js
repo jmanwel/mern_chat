@@ -1,4 +1,11 @@
 const User = require("../Models/User");
+const jwt = require("jsonwebtoken");
+const maxAge = 5*24*60*60
+const createJWT = id =>{
+    return jwt.sign({ id }, "chatroom-secret", {
+        expiresIn: maxAge 
+    });
+}
 
 const alertError = (err)=>{
     let errors= { name:"", email:"", password:"" };
@@ -21,6 +28,8 @@ module.exports.signup = async(req, res) =>{
     const { name, email, password } = req.body;
     try {
         const user = await User.create({ name, email, password });
+        const token = createJWT(user._id);
+        res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge*1000 })
         res.status(201).json({ user });
     } catch (e) {
         let errors = alertError(e);

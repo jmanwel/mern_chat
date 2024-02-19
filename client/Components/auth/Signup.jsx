@@ -17,6 +17,7 @@ const Signup = () => {
         try {
             const res = await fetch(`${ENDPOINT}signup`,{
                 method: "POST",
+                credential: "include",
                 body: JSON.stringify({ name, email, password }),
                 headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin":"*" }
             });
