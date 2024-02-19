@@ -1,11 +1,26 @@
+const cookieParser = require('cookie-parser');
+const cors = require("cors");
 require('dotenv').config();
 const express = require('express');
 const authRoutes = require('./routes/authRoutes');
 const { createServer } = require('node:http');
 const socketio = require('socket.io');
+
+const ORIGIN = process.env.ORIGIN;
+
 const app = express();
+
+const corsOptions = {
+  origin: ORIGIN,
+  credential: true,
+  optionSuccessStatus: 200
+}
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(authRoutes);
+app.use(cookieParser());
+
 const server = createServer(app);
 const mongoose = require('mongoose');
 const { addUsers, removeUsers, getUsers, getUser } = require("./helper");
@@ -37,6 +52,18 @@ const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log(`server running at ${ PORT }`);
 });
+
+app.get("/set-cookies", (req, res)=>{
+  res.cookie("username", "Tony");
+  res.cookie("isAuthenticated", true, { secure: true, maxAge:5*60*60*1000 });
+  res.send("cookies are set");
+})
+
+app.get("/get-cookies", (req, res)=>{
+  const cookies = req.cookies;
+  console.log(cookies);
+  res.json(cookies);
+})
 
 io.on('connection', (socket)=>{
   console.log(`${socket.id}\n----------`);
