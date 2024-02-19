@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserContext } from "../../userContext";
+import { Navigate } from "react-router-dom";
 
 const Signup = () => {
 
+    const {user, setUser} = useContext(UserContext);
+ 
     const [ name, setName ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
@@ -14,18 +18,32 @@ const Signup = () => {
 
     const submitHandler = async e => {
         e.preventDefault();
+        setNameError("");
+        setEmailError("");
+        setPasswordError("");
         try {
             const res = await fetch(`${ENDPOINT}signup`,{
                 method: "POST",
-                credentials: "include",
                 body: JSON.stringify({ name, email, password }),
                 headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin":"*" }
             });
             const data = await res.json();
             console.log(data);
+            if (data.errors) {
+                setNameError(data.errors.name);
+                setEmailError(data.errors.email);
+                setPasswordError(data.errors.password);
+            }
+            if (data.user) {
+                setUser(data.user)
+            }
         } catch (error) {
             console.log(error);            
         }
+    }
+
+    if (user) {
+        return <Navigate to="/" />
     }
 
     return (
@@ -42,7 +60,7 @@ const Signup = () => {
                             onChange= { e=>setName(e.target.value )}
                         />
                         <label htmlFor="name">Name</label>
-                        <div className="name error red-text"></div>
+                        <div className="name error red-text">{ nameError }</div>
                     </div>                    
                 </div>
             
@@ -56,7 +74,7 @@ const Signup = () => {
                             onChange= { e=>setEmail(e.target.value )}
                         />
                         <label htmlFor="email">Email</label>
-                        <div className="email error red-text"></div>
+                        <div className="email error red-text">{ emailError }</div>
                     </div>
                 </div>
 
@@ -69,7 +87,7 @@ const Signup = () => {
                             value= { password }
                             onChange= { e=>setPassword(e.target.value )}
                         />
-                        <div className="password error red-text"></div>
+                        <div className="password error red-text">{ passwordError }</div>
                         <label htmlFor="password">Password</label>
                     </div>
                 </div>
