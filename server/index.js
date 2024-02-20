@@ -12,14 +12,14 @@ const app = express();
 
 const corsOptions = {
   origin: ORIGIN,
-  credential: true,
+  credentials: true,
   optionSuccessStatus: 200
 }
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(authRoutes);
 app.use(cookieParser());
+app.use(authRoutes);
 
 const server = createServer(app);
 const mongoose = require('mongoose');

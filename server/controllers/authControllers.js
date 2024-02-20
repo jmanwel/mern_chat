@@ -1,9 +1,10 @@
 const User = require("../Models/User");
 const jwt = require("jsonwebtoken");
-const maxAge = 5*24*60*60
+const maxAge = 5*24*60*60;
 
 const createJWT = id =>{
-    return jwt.sign({ id }, "chatroom-secret", {
+    console.log("token created!");
+    return jwt.sign({ id }, "chatroom secret", {
         expiresIn: maxAge 
     });
 }
@@ -55,8 +56,29 @@ module.exports.login = async (req, res) =>{
         res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge*1000 })
         res.status(201).json({ user });
     } catch (e) {
+        console.log(e);
         let errors = alertError(e);
         res.status(400).json({ errors });
+    }
+}
+module.exports.verifyuser = (req, res, next) =>{
+    console.log(req.cookie)
+    const token = req.cookies.jwt;
+    console.log("verifying user")
+    if(token){
+        jwt.verify(token, "chatroom secret", async(err, decodedToken)=>{
+            console.log("Decoded Token", decodedToken);
+            if(err){
+                console.log(err.message);
+            } else {
+                let user = await User.findById(decodedToken.id);
+                res.json(user);
+                next();
+            }
+        })
+    } else {
+        console.log("No token found")
+        next();
     }
 }
 
