@@ -45,23 +45,6 @@ const Home = () => {
 
     }
     
-    const setASJohn = ()=>{
-        const john = {name: "John", 
-                      mail: "john@email.com",
-                      password: "123",
-                      _id: "123"
-                    };
-        setUser(john)
-    }
-
-    const setASTom = ()=>{
-        const tom = {name: "Tom", 
-                      mail: "tom@email.com",
-                      password: "456",
-                      _id: "456"
-                    };
-        setUser(tom)
-    }
 
     return (
         <div>
@@ -88,10 +71,6 @@ const Home = () => {
                                     <button className="btn">Create a room</button>              
                                 </form>
                             </div>
-                        </div>
-                        <div className="card-action">
-                            <a href="#" onClick={setASJohn}>set as John</a>
-                            <a href="#" onClick={setASTom}>set as Tom</a>
                         </div>
                     </div>
                 </div>
