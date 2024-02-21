@@ -61,9 +61,8 @@ module.exports.login = async (req, res) =>{
         res.status(400).json({ errors });
     }
 }
+
 module.exports.verifyuser = (req, res, next) =>{
-    console.log(req.cookie)
-    console.log(req)
     const token = req.cookies.jwt;
     console.log("verifying user")
     if(token){
@@ -84,5 +83,6 @@ module.exports.verifyuser = (req, res, next) =>{
 }
 
 module.exports.logout = (req, res) =>{
-    res.send("logout");
+    res.cookie("jwt", "", { maxAge: 1});
+    res.status(200).json({ logout: true });
 }
