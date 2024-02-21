@@ -63,6 +63,7 @@ module.exports.login = async (req, res) =>{
 }
 module.exports.verifyuser = (req, res, next) =>{
     console.log(req.cookie)
+    console.log(req)
     const token = req.cookies.jwt;
     console.log("verifying user")
     if(token){

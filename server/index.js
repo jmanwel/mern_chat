@@ -62,6 +62,7 @@ app.get("/set-cookies", (req, res)=>{
 app.get("/get-cookies", (req, res)=>{
   const cookies = req.cookies;
   console.log(cookies);
+  console.log("----------")
   res.json(cookies);
 })
 

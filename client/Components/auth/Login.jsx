@@ -21,6 +21,7 @@ const Login = () => {
         try {
             const res = await fetch(`${ENDPOINT}login`,{
                 method: "POST",
+                credentials: "include",
                 body: JSON.stringify({ email, password }),
                 headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin":"*" }
             });

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserContext } from "../userContext";
 import Chat from "../Components/chat/Chat";
@@ -8,7 +8,26 @@ import Login from "../Components/auth/Login";
 import Signup from "../Components/auth/Signup";
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
+
+  const ENDPOINT = import.meta.env.VITE_ENDPOINT;
+
+  useEffect(()=>{
+    const verifyUser = async()=>{
+      try {
+          const res = await fetch(`${ENDPOINT}verifyuser`,{
+            METHOD: "GET",
+            credentials: "include",
+            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin":"*" }
+          });
+          const data = await res.json();
+          setUser(data)
+        } catch (error) {
+            console.log(error);
+        }
+      }
+      verifyUser();      
+  }, []);
 
   return (
       <Router>
