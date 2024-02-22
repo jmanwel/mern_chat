@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from "../../userContext";
-
+import SignedOutMenu from "./SignedOutMenu";
+import SignedInMenu from "./SignedInMenu";
 
 const Navbar = () => {
 
@@ -18,7 +19,8 @@ const Navbar = () => {
         }
     }    
     
-
+    const menu = user ? <SignedInMenu logout={ logout } /> : <SignedOutMenu />
+    
     return (
         <>
             <nav className="green">
@@ -26,16 +28,12 @@ const Navbar = () => {
                     <a href="/" className="brand-logo">Chat</a>
                     <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/signup">SignUp</a></li>
-                        <li><a onClick={ logout } href="#">Logout</a></li>
+                        { menu }
                     </ul>
                 </div>
             </nav>
             <ul className="sidenav" id="mobile-demo">
-                <li><a href="/login">Login</a></li>
-                <li><a href="/signup">SignUp</a></li>
-                <li><a onClick={ logout } href="#">Logout</a></li>
+                { menu }
             </ul>
         </>
     )

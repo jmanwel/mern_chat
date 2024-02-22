@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { UserContext } from "../../userContext";
-import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import RoomList from "./RoomList.jsx";
 import io from "socket.io-client"
 
@@ -45,7 +45,9 @@ const Home = () => {
 
     }
     
-
+    if (!user){
+        return <Navigate to="/login" />
+    }
     return (
         <div>
             <div className="row">

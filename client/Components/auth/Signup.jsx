@@ -49,7 +49,7 @@ const Signup = () => {
 
     return (
         <div className="row">
-            <h1>Sign Up Page</h1>
+            <h2>Sign Up</h2>
             <form className="container" onSubmit= { submitHandler }>
                 <div className="row">
                     <div className="input-field col s12">

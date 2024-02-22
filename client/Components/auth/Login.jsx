@@ -45,7 +45,7 @@ const Login = () => {
 
     return (
         <div className="row">
-            <h1>Login Page</h1>
+            <h2>Login</h2>
             <form className="container" onSubmit= { submitHandler }>
             
                 <div className="row">
