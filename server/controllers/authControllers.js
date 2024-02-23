@@ -83,6 +83,7 @@ module.exports.verifyuser = (req, res, next) =>{
 }
 
 module.exports.logout = (req, res) =>{
-    res.cookie("jwt", "", { maxAge: 1});
+    console.log("Deleting cookie")
+    res.cookie("jwt", "none", { httpOnly: true, maxAge: 1});
     res.status(200).json({ logout: true });
 }

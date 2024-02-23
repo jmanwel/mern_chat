@@ -10,9 +10,9 @@ const Navbar = () => {
     
     const logout = async ()=>{
         try {
-            const res = await fetch(`${ENDPOINT}verifyuser`,{credentials: "include",});
+            const res = await fetch(`${ENDPOINT}logout`,{credentials: "include",});
             const data = res.json();
-            console.log("logout data", data);
+            console.log("logout data =>", data);
             setUser(null);
         } catch (error) {
             console.log(error);    
