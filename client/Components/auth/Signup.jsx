@@ -48,15 +48,18 @@ const Signup = () => {
     }
 
     return (
-        <div className="row">
-            <h2>Sign Up</h2>
+        <div className="text-center">
+        <br/>
+        <br/>
             <form className="container" onSubmit= { submitHandler }>
+                <h2 className="text-center">Sign Up</h2>
+                <br />
                 <div className="row">
                     <div className="input-field col s12">
                         <input 
                             id="name" 
                             type="text" 
-                            className="validate"
+                            className="validate form-control"
                             value= { name }
                             onChange= { e=>setName(e.target.value )}
                         />
@@ -70,7 +73,7 @@ const Signup = () => {
                         <input 
                             id="email" 
                             type="email" 
-                            className="validate" 
+                            className="validate form-control" 
                             value= { email }
                             onChange= { e=>setEmail(e.target.value )}
                         />
@@ -92,7 +95,10 @@ const Signup = () => {
                         <label htmlFor="password">Password</label>
                     </div>
                 </div>
-                <button className="btn btn-large col">Sign up</button>
+                <button className="btn btn-large btn-primary">Sign up</button>
+                <br/>
+                <br/>
+                <br/>
             </form>
         </div>
     )

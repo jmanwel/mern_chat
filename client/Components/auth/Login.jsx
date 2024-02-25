@@ -44,16 +44,18 @@ const Login = () => {
     }
 
     return (
-        <div className="row">
-            <h2>Login</h2>
+        <div className="text-center">
+        <br/>
+        <br/>
             <form className="container" onSubmit= { submitHandler }>
-            
+                <h2 className="text-center">Login</h2>
+                <br/>
                 <div className="row">
                     <div className="input-field col s12">
                         <input 
                             id="email" 
                             type="email" 
-                            className="validate" 
+                            className="validate form-control" 
                             value= { email }
                             onChange= { e=>setEmail(e.target.value )}
                         />
@@ -67,7 +69,7 @@ const Login = () => {
                         <input 
                             id="password" 
                             type="password" 
-                            className="validate" 
+                            className="validate form-control" 
                             value= { password }
                             onChange= { e=>setPassword(e.target.value )}
                         />
@@ -75,7 +77,10 @@ const Login = () => {
                         <label htmlFor="password">Password</label>
                     </div>
                 </div>
-                <button className="btn btn-large col">Login</button>
+                <button className="btn btn-large btn-success">Login</button>
+                <br/>
+                <br/>
+                <br/>
             </form>
         </div>
     )

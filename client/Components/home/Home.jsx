@@ -49,28 +49,35 @@ const Home = () => {
         return <Navigate to="/login" />
     }
     return (
-        <div>
+        <div className="text-center">
             <div className="row">
                 <div className="col s12 m6">
                     <div className="card blue-grey darken-1">
                         <div className="card-content white-text">
-                            <span className="card-title">Welcome { user ? user.name:"" }</span>
+                            <span className="card-title">Welcome { user ? user.name:"" }!</span>
                             <div className="row">
-                                <form onSubmit={ handleSubmit }>
+                                <form className="container" onSubmit={ handleSubmit }>
+                                    <br />
                                     <div className="row">
                                         <div className="input-field col s12">
+                                            <br />
                                             <input 
-                                                placeholder="Enter a room name" 
                                                 id="room" 
                                                 type="text" 
-                                                className="validate"
+                                                className="validate form-control"
                                                 value={ room }
                                                 onChange={ e=>setRoom(e.target.value) }
                                             />
                                             <label htmlFor="room">Room</label>
                                         </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div className="row">
+                                        <button className="btn btn-success">Create a new room</button>              
                                     </div>              
-                                    <button className="btn">Create a room</button>              
+                                    <br />
+                                    <br />
                                 </form>
                             </div>
                         </div>
