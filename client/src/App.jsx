@@ -6,6 +6,7 @@ import Home from "../Components/home/Home";
 import Navbar from "../Components/layout/Navbar";
 import Login from "../Components/auth/Login";
 import Signup from "../Components/auth/Signup";
+import ErrorPage from "./error_page.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -36,11 +37,12 @@ function App() {
           <UserContext.Provider value={{user, setUser}}>
             <Navbar/>
             <Routes>
-              <Route exact path="/" element={ <Home/> }/>
-              <Route exact path="/chat" element={ <Chat/> }/>
-              <Route exact path="/login" element={ <Login/> }/>
-              <Route exact path="/signup" element={ <Signup/> }/>
-              <Route exact path="/chat/:room_id/:room_name" element={ <Chat/> }/>
+              <Route exact path="/" element={ < Home /> }/>
+              <Route exact path="/chat" element={ < Chat /> }/>
+              <Route exact path="/login" element={ < Login /> }/>
+              <Route exact path="/signup" element={ < Signup /> }/>
+              <Route exact path="/chat/:room_id/:room_name" element={ < Chat /> }/>
+              <Route path ="*" element={ < ErrorPage /> } />
             </Routes>
           </UserContext.Provider>
         </div>
