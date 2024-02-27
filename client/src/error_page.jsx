@@ -7,7 +7,7 @@ const error_page = () => {
             <br />
             <div className="error-page text-center">
                 <h1>404!</h1>
-                <img className="vibrate-1" alt="404" src="../404.png"/>
+                <img className="vibrate-1" alt="404" src="/404.jpeg"/>
                 <br />
                 <br />
                 <a className="navbar-brand" href="/">Back to Home</a>
